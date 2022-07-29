@@ -87,7 +87,7 @@ function createApiQueryString()
   // Convert to a query string
   let queryString = new URLSearchParams(formData).toString();
 
-  console.log(queryString);
+  // console.log(queryString);
 
   // Convert to an object
   // let formObj = serializeToObj(formData);
@@ -124,9 +124,15 @@ function getDataFromServer()
         return;
       };
       // data is here
-      let jsonResult = JSON.parse(activeAjax.responseText);
+      try{
+        //convert json
+        let jsonResult = JSON.parse(activeAjax.responseText);
+        // fill cards based on json data
+        fillCards(jsonResult);
+      }catch(e){
+        console.error('Error on json response from API!');
+      }
 
-      fillCards(jsonResult);
 
       // enable form elements
       // controlFormDisabled(false);
