@@ -5,7 +5,8 @@
 
 // on change everything on form, call get server data
 const elFormServerFilters = document.getElementById('server-filters');
-elFormServerFilters.addEventListener('change', function() {
+elFormServerFilters.addEventListener('change', function()
+{
   getDataFromServer();
 });
 
@@ -61,7 +62,8 @@ function createCardElement(datarow)
 }
 
 
-function serializeToObj (data) {
+function serializeToObj (data)
+{
   let obj = {};
   for (let [key, value] of data) {
     if (obj[key] !== undefined) {
@@ -95,7 +97,10 @@ function createApiQueryString()
   return queryString;
 }
 
+// only one ajax at one time
 var activeAjax;
+// cancel old changes util submit new ones
+var activeAjaxDelayTime;
 function getDataFromServer()
 {
   // if we have active ajax, cancel it
@@ -104,25 +109,30 @@ function getDataFromServer()
     activeAjax.abort();
   }
 
+  // clear old timer request
+  clearTimeout( activeAjaxDelayTime );
+
   // disable form elements
   // controlFormDisabled(true);
 
-  activeAjax = new XMLHttpRequest();
-  activeAjax.open("GET", "http://localhost/api/pricing?"+ createApiQueryString(), true);
-  activeAjax.onreadystatechange = function () {
-    if (activeAjax.readyState != 4 || activeAjax.status != 200) {
-      //error - show something
-      return;
+  activeAjaxDelayTime = setTimeout(() => {
+    activeAjax = new XMLHttpRequest();
+    activeAjax.open("GET", "http://localhost/api/pricing?"+ createApiQueryString(), true);
+    activeAjax.onreadystatechange = function () {
+      if (activeAjax.readyState != 4 || activeAjax.status != 200) {
+        //error - show something
+        return;
+      };
+      // data is here
+      let jsonResult = JSON.parse(activeAjax.responseText);
+
+      fillCards(jsonResult);
+
+      // enable form elements
+      // controlFormDisabled(false);
     };
-    // data is here
-    let jsonResult = JSON.parse(activeAjax.responseText);
-
-    fillCards(jsonResult);
-
-    // enable form elements
-    // controlFormDisabled(false);
-  };
-  activeAjax.send();
+    activeAjax.send();
+  }, 200);
 }
 
 
@@ -148,8 +158,6 @@ function controlFormDisabled(newStatus)
     rangeSliders[0].removeAttribute('disabled');
     rangeSliders[1].removeAttribute('disabled');
   }
-
-
 }
 
 // fill initial data
