@@ -95,28 +95,34 @@ function createApiQueryString()
   return queryString;
 }
 
-
+var activeAjax;
 function getDataFromServer()
 {
+  // if we have active ajax, cancel it
+  if(activeAjax !== undefined)
+  {
+    activeAjax.abort();
+  }
+
   // disable form elements
   // controlFormDisabled(true);
 
-  let r = new XMLHttpRequest();
-  r.open("GET", "http://localhost/api/pricing?"+ createApiQueryString(), true);
-  r.onreadystatechange = function () {
-    if (r.readyState != 4 || r.status != 200) {
+  activeAjax = new XMLHttpRequest();
+  activeAjax.open("GET", "http://localhost/api/pricing?"+ createApiQueryString(), true);
+  activeAjax.onreadystatechange = function () {
+    if (activeAjax.readyState != 4 || activeAjax.status != 200) {
       //error - show something
       return;
     };
     // data is here
-    let jsonResult = JSON.parse(r.responseText);
+    let jsonResult = JSON.parse(activeAjax.responseText);
 
     fillCards(jsonResult);
 
     // enable form elements
     // controlFormDisabled(false);
   };
-  r.send();
+  activeAjax.send();
 }
 
 
