@@ -1,3 +1,13 @@
+/**
+ *
+ *
+ */
+
+// on change everything on form, call get server data
+const elFormServerFilters = document.getElementById('server-filters');
+elFormServerFilters.addEventListener('change', function() {
+  getDataFromServer();
+});
 
 
 function fillCards(serversDatalist)
@@ -8,6 +18,7 @@ function fillCards(serversDatalist)
   // do loop for each server item
   serversDatalist.forEach(createCardElement)
 }
+
 
 function createCardElement(datarow)
 {
@@ -69,7 +80,7 @@ function serializeToObj (data) {
 function createApiQueryString()
 {
   // Get all field data from the form
-  let formData = new FormData(serverFilters);
+  let formData = new FormData(elFormServerFilters);
 
   // Convert to a query string
   let queryString = new URLSearchParams(formData).toString();
@@ -87,6 +98,9 @@ function createApiQueryString()
 
 function getDataFromServer()
 {
+  // disable form elements
+  // controlFormDisabled(true);
+
   let r = new XMLHttpRequest();
   r.open("GET", "http://localhost/api/pricing?"+ createApiQueryString(), true);
   r.onreadystatechange = function () {
@@ -98,17 +112,39 @@ function getDataFromServer()
     let jsonResult = JSON.parse(r.responseText);
 
     fillCards(jsonResult);
+
+    // enable form elements
+    // controlFormDisabled(false);
   };
   r.send();
 }
 
 
-// on change everything on form, call get server data
-const serverFilters = document.getElementById('server-filters');
-serverFilters.addEventListener('change', function() {
-  getDataFromServer();
-});
+function controlFormDisabled(newStatus)
+{
+  if(newStatus === undefined) {
+    newStatus = false;
+  }
 
+  let elements = elFormServerFilters.elements;
+  for (var i = 0, len = elements.length; i < len; ++i) {
+    elements[i].disabled = newStatus;
+  }
+
+  // enable and disable range slider
+  let rangeSliders = document.querySelectorAll('.range-slider');
+  if(newStatus === true)
+  {
+    rangeSliders[0].setAttribute('disabled', true);
+    rangeSliders[1].setAttribute('disabled', true);
+  }
+  else{
+    rangeSliders[0].removeAttribute('disabled');
+    rangeSliders[1].removeAttribute('disabled');
+  }
+
+
+}
 
 // fill initial data
 getDataFromServer();
