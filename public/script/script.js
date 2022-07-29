@@ -11,59 +11,83 @@ function fillCards(serversDatalist)
 
 function createCardElement(datarow)
 {
-  console.log(datarow);
-  // var string;
-  string = '<div class="bg-gray-100 rounded-lg p-2 lg:p-4 border-2 border-transparent hover:border-sky-300 transition">';
+  let str;
+  str = '<div class="bg-gray-100 rounded-lg p-2 lg:p-4 border-2 border-transparent hover:border-sky-300 transition">';
   {
-    string += '<div class="server-model font-light">' + datarow.model + '</div>';
+    str += '<div class="server-model font-light truncate">' + datarow.model + '</div>';
     {
-      string += '<div class="server-ram flex">';
-      string += '<span class="grow">16G</span>';
-      string += '<span class="text-gray-500">GDDR3</span>';
+      str += '<div class="server-ram flex">';
+      str += '<span class="grow">' +  datarow.ramCapacity + ' GB</span>';
+      str += '<span class="text-gray-500">GDDR' +  datarow.ramGen + '</span>';
     }
-    string += '</div>';
-    string += '<div class="server-hdd flex text-gray-800">';
+    str += '</div>';
+    str += '<div class="server-hdd flex text-gray-800">';
     {
-      string += '<span class="grow">2x2TB</span>';
-      string += '<span class="text-gray-500">SATA2</span>';
+      str += '<span class="grow">' + datarow.hddCount + 'x' + datarow.hddEachCapacity + '</span>';
+      str += '<span class="text-gray-500">' + datarow.hddType + '</span>';
     }
-    string += '</div>';
-    string += '<div class="server-location flex text-gray-800">';
+    str += '</div>';
+    str += '<div class="server-location flex text-gray-800">';
     {
-      string += '<span class="grow">Amsterdam</span>';
-      string += '<span class="text-gray-500">AMS-01</span>';
+      str += '<span class="grow">' + datarow.locationCity + '</span>';
+      str += '<span class="text-gray-500">' + datarow.locationZone + '</span>';
     }
-    string += '</div>';
-    string += '<div class="server-price font-light text-xl text-blue-400">';
+    str += '</div>';
+    str += '<div class="server-price font-light text-xl text-blue-400">';
     {
-      string += '<span>$</span>';
-      string += '<span>49.99</span>';
+      str += '<span>' + datarow.priceCurrency + '</span>';
+      str += '<span>' + datarow.priceAmount + '</span>';
     }
-    string += '</div>';
+    str += '</div>';
   }
-  string += '</div>';
+  str += '</div>';
 
-
-  var temp = document.createElement('div');
-  temp.innerHTML = string;
-
+  // create temp element
+  let temp = document.createElement('div');
+  temp.innerHTML = str;
+  // append element to page
   document.getElementById('servers-card-list').appendChild(temp);
+}
 
-  return string;
+
+function serializeToObj (data) {
+  let obj = {};
+  for (let [key, value] of data) {
+    if (obj[key] !== undefined) {
+      if (!Array.isArray(obj[key])) {
+        obj[key] = [obj[key]];
+      }
+      obj[key].push(value);
+    } else {
+      obj[key] = value;
+    }
+  }
+  return obj;
 }
 
 
 function createApiQueryString()
 {
-  var queryString = 'hdd=sas';
+  // Get all field data from the form
+  let formData = new FormData(serverFilters);
 
+  // Convert to a query string
+  let queryString = new URLSearchParams(formData).toString();
+
+  console.log(queryString);
+
+  // Convert to an object
+  // let formObj = serializeToObj(formData);
+  // console.log(formObj);
+
+  // console.log(JSON.stringify(formObj));
   return queryString;
 }
 
 
 function getDataFromServer()
 {
-  var r = new XMLHttpRequest();
+  let r = new XMLHttpRequest();
   r.open("GET", "http://localhost/api/pricing?"+ createApiQueryString(), true);
   r.onreadystatechange = function () {
     if (r.readyState != 4 || r.status != 200) {
@@ -71,12 +95,19 @@ function getDataFromServer()
       return;
     };
     // data is here
-    var jsonResult = JSON.parse(r.responseText);
+    let jsonResult = JSON.parse(r.responseText);
 
     fillCards(jsonResult);
   };
   r.send();
 }
+
+
+// on change everything on form, call get server data
+const serverFilters = document.getElementById('server-filters');
+serverFilters.addEventListener('change', function() {
+  getDataFromServer();
+});
 
 
 // fill initial data

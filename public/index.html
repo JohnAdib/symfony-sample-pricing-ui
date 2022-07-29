@@ -29,93 +29,93 @@
   <div class="mx-auto max-w-screen-xl w-full px-2 sm:px-4 lg:px-5 py-4 select-none">
     <div class="flex flex-row gap-4">
       <aside class="basis-1/4 bg-gray-100 p-4 lg:p-6 rounded-lg select-none">
+        <form id="server-filters">
+          <div class="block mb-4">
+            <label class="block">
+              <span class="font-light">Storage</span>
+              <div class="my-2 pt-10 pb-10 px-2">
+                <div id="storage-range"></div>
+              </div>
+              <input type="hidden" name="storage-min" value="" id="storage-min" class="block p-1 mt-2 w-full" />
+              <input type="hidden" name="storage-max" value="" id="storage-max" class="block p-1 mt-2 w-full" />
 
-        <div class="block mb-4">
-          <label class="block">
-            <span class="font-light">Storage</span>
-            <div class="my-2 pt-10 pb-10 px-2">
-              <div id="storage-range"></div>
-            </div>
-            <input type="hidden" name="storage-min" value="" id="storage-min" class="block p-1 mt-2 w-full" />
-            <input type="hidden" name="storage-max" value="" id="storage-max" class="block p-1 mt-2 w-full" />
-
-          </label>
-        </div>
-
-        <div class="block my-4">
-          <label class="block">
-            <span class="font-light">Ram</span>
-            <div class="my-2 pt-10 pb-10 px-2">
-              <div id="ram-range"></div>
-            </div>
-            <input type="hidden" name="ram-min" value="" id="ram-min" class="block p-1 mt-2 w-full" />
-            <input type="hidden" name="ram-max" value="" id="ram-max" class="block p-1 mt-2 w-full" />
-          </label>
-        </div>
-
-        <div class="block my-4">
-          <h3 class="font-light">Storage Type</h3>
-          <div class="mt-2">
-            <label class="flex items-center cursor-pointer">
-              <input type="checkbox" class="form-checkbox" name="hddtype" value="SAS" checked>
-              <span class="ml-2">SAS</span>
-            </label>
-            <label class="flex items-center cursor-pointer">
-              <input type="checkbox" class="form-checkbox" name="hddtype" value="SATA2">
-              <span class="ml-2">SATA2</span>
-            </label>
-            <label class="flex items-center cursor-pointer">
-              <input type="checkbox" class="form-checkbox" name="hddtype" value="SSD">
-              <span class="ml-2">SSD</span>
             </label>
           </div>
-        </div>
 
-        <div class="block my-4">
-          <h3 class="font-light">Datacenter Locations</h3>
-          <div class="mt-2">
-            <label class="flex items-center cursor-pointer">
-              <input type="radio" class="form-radio" name="location" value="AMS-01" checked>
-              <span class="ml-2">Amsterdan</span>
-            </label>
-            <label class="flex items-center cursor-pointer">
-              <input type="radio" class="form-radio" name="location" value="DAL-10">
-              <span class="ml-2">Dallas</span>
-            </label>
-            <label class="flex items-center cursor-pointer">
-              <input type="radio" class="form-radio" name="location" value="FRA-10">
-              <span class="ml-2">Frankfurt</span>
-            </label>
-            <label class="flex items-center cursor-pointer">
-              <input type="radio" class="form-radio" name="location" value="HKG-10">
-              <span class="ml-2">Hong Kong</span>
-            </label>
-            <label class="flex items-center cursor-pointer">
-              <input type="radio" class="form-radio" name="location" value="SFO-12">
-              <span class="ml-2">San Francisco</span>
-            </label>
-            <label class="flex items-center cursor-pointer">
-              <input type="radio" class="form-radio" name="location" value="SIN-11">
-              <span class="ml-2">Singapore</span>
-            </label>
-            <label class="flex items-center cursor-pointer">
-              <input type="radio" class="form-radio" name="location" value="WDC-01">
-              <span class="ml-2">Washington D.C.</span>
+          <div class="block my-4">
+            <label class="block">
+              <span class="font-light">Ram</span>
+              <div class="my-2 pt-10 pb-10 px-2">
+                <div id="ram-range"></div>
+              </div>
+              <input type="hidden" name="ram-min" value="" id="ram-min" class="block p-1 mt-2 w-full" />
+              <input type="hidden" name="ram-max" value="" id="ram-max" class="block p-1 mt-2 w-full" />
             </label>
           </div>
-        </div>
 
-        <div class="block my-4">
-          <label class="block">
-            <span class="font-light">Brand</span>
-            <select class="form-select block w-full mt-2 cursor-pointer">
-              <option value="HP">HP</option>
-              <option value="Dell">Dell</option>
-              <option value="IBM">IBM</option>
-            </select>
-          </label>
-        </div>
+          <div class="block my-4">
+            <h3 class="font-light">Storage Type</h3>
+            <div class="mt-2">
+              <label class="flex items-center cursor-pointer">
+                <input type="checkbox" class="form-checkbox" name="hddtype" value="SAS" checked>
+                <span class="ml-2">SAS</span>
+              </label>
+              <label class="flex items-center cursor-pointer">
+                <input type="checkbox" class="form-checkbox" name="hddtype" value="SATA2">
+                <span class="ml-2">SATA2</span>
+              </label>
+              <label class="flex items-center cursor-pointer">
+                <input type="checkbox" class="form-checkbox" name="hddtype" value="SSD">
+                <span class="ml-2">SSD</span>
+              </label>
+            </div>
+          </div>
 
+          <div class="block my-4">
+            <h3 class="font-light">Datacenter Locations</h3>
+            <div class="mt-2">
+              <label class="flex items-center cursor-pointer">
+                <input type="radio" class="form-radio" name="location" value="AMS-01" checked>
+                <span class="ml-2">Amsterdan</span>
+              </label>
+              <label class="flex items-center cursor-pointer">
+                <input type="radio" class="form-radio" name="location" value="DAL-10">
+                <span class="ml-2">Dallas</span>
+              </label>
+              <label class="flex items-center cursor-pointer">
+                <input type="radio" class="form-radio" name="location" value="FRA-10">
+                <span class="ml-2">Frankfurt</span>
+              </label>
+              <label class="flex items-center cursor-pointer">
+                <input type="radio" class="form-radio" name="location" value="HKG-10">
+                <span class="ml-2">Hong Kong</span>
+              </label>
+              <label class="flex items-center cursor-pointer">
+                <input type="radio" class="form-radio" name="location" value="SFO-12">
+                <span class="ml-2">San Francisco</span>
+              </label>
+              <label class="flex items-center cursor-pointer">
+                <input type="radio" class="form-radio" name="location" value="SIN-11">
+                <span class="ml-2">Singapore</span>
+              </label>
+              <label class="flex items-center cursor-pointer">
+                <input type="radio" class="form-radio" name="location" value="WDC-01">
+                <span class="ml-2">Washington D.C.</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="block my-4">
+            <label class="block">
+              <span class="font-light">Brand</span>
+              <select class="form-select block w-full mt-2 cursor-pointer">
+                <option value="HP">HP</option>
+                <option value="Dell">Dell</option>
+                <option value="IBM">IBM</option>
+              </select>
+            </label>
+          </div>
+        </form>
       </aside>
 
       <main class="basis-3/4">
