@@ -12,7 +12,7 @@ function fillCards(serversDatalist)
 function createCardElement(datarow)
 {
   let str;
-  str = '<div class="bg-gray-100 rounded-lg p-2 lg:p-4 border-2 border-transparent hover:border-sky-300 transition">';
+  str = '<div class="bg-gray-100 rounded-lg p-2 lg:p-4 lg:pb-2 border-2 border-transparent hover:border-sky-300 transition">';
   {
     str += '<div class="server-model font-light truncate">' + datarow.model + '</div>';
     {
