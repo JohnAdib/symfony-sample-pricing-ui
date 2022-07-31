@@ -13,16 +13,17 @@ networks:
 services:
 # -------------------------------------------------- nginx
   nginx:
-    container_name: nginx
+    container_name: pricing_ui_nginx
     build:
       context: .
       dockerfile: ./docker/nginx/Dockerfile
     hostname: ${NGINX_HOSTNAME}
     restart: always
     ports:
-      - "80:80"
       - "8091:80"
-      - "443:443"
+      - "8092:443"
+      # - "80:80"
+      # - "443:443"
     tty: true
     extra_hosts:
         - "symfony-pricing-sample1-ui.local:127.0.0.1"
