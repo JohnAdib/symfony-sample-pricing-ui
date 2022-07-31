@@ -117,7 +117,7 @@ function getDataFromServer()
 
   activeAjaxDelayTime = setTimeout(() => {
     activeAjax = new XMLHttpRequest();
-    activeAjax.open("GET", "http://localhost/api/pricing?"+ createApiQueryString(), true);
+    activeAjax.open("GET", "/api/pricing?"+ createApiQueryString(), true);
     activeAjax.onreadystatechange = function () {
       if (activeAjax.readyState != 4 || activeAjax.status != 200) {
         //error - show something
