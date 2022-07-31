@@ -1,0 +1,37 @@
+# version of compose
+version: "3.8"
+# name: symfony-sample1
+# list of volumes and named them
+volumes:
+  # ********** nginx
+  nginx_log:
+# list of networks
+networks:
+  qanat:
+    driver: bridge
+# list of services
+services:
+# -------------------------------------------------- nginx
+  nginx:
+    container_name: nginx
+    build:
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
+    hostname: ${NGINX_HOSTNAME}
+    restart: always
+    ports:
+      - "80:80"
+      - "8091:80"
+      - "443:443"
+    tty: true
+    extra_hosts:
+        - "symfony-pricing-sample1-ui.local:127.0.0.1"
+    volumes:
+      # - nginx_log:/var/log/nginx
+      - ./src/:/var/www/html/
+    environment:
+      TZ: ${TIMEZONE}
+    networks:
+      - qanat
+#
+# eol
