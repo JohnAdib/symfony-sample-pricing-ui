@@ -29,26 +29,26 @@ function createCardElement(datarow)
     str += '<div class="server-model font-light truncate">' + datarow.model + '</div>';
     {
       str += '<div class="server-ram flex">';
-      str += '<span class="grow">' +  datarow.ramCapacity + ' GB</span>';
-      str += '<span class="text-gray-500">GDDR' +  datarow.ramGen + '</span>';
+      str += '<span class="grow">Ram ' +  datarow.ram + ' GB</span>';
+      str += '<span class="text-gray-500">' +  datarow.ramtype + '</span>';
     }
     str += '</div>';
     str += '<div class="server-hdd flex text-gray-800">';
     {
-      str += '<span class="grow">' + datarow.hddCount + 'x' + datarow.hddEachCapacity + '</span>';
-      str += '<span class="text-gray-500">' + datarow.hddType + '</span>';
+      str += '<span class="grow">Storage ' + datarow.storage + ' </span>';
+      str += '<span class="text-gray-500">' + datarow.storagetxt + '</span>';
     }
     str += '</div>';
     str += '<div class="server-location flex text-gray-800">';
     {
-      str += '<span class="grow">' + datarow.locationCity + '</span>';
-      str += '<span class="text-gray-500">' + datarow.locationZone + '</span>';
+      str += '<span class="grow">' + datarow.city + '</span>';
+      str += '<span class="text-gray-500">' + datarow.location + '</span>';
     }
     str += '</div>';
     str += '<div class="server-price font-light text-xl text-blue-400">';
     {
-      str += '<span>' + datarow.priceCurrency + '</span>';
-      str += '<span>' + datarow.priceAmount + '</span>';
+      str += '<span>' + datarow.currency + '</span>';
+      str += '<span>' + datarow.price + '</span>';
     }
     str += '</div>';
   }
