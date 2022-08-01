@@ -25,8 +25,8 @@
   <meta name="author" content="Javad Adib" />
   <link href="https://MrAdib.com" rel="author" />
   <link href="./img/favicon.png" type="image/png" rel="icon" />
-  <link rel="stylesheet" href="./fonts/AirbnbCereal/style.css?v=1" />
-  <link rel="stylesheet" href="./lib/nouislider.min.css?v=1" />
+  <link rel="stylesheet" href="./fonts/AirbnbCereal/style.css?v=2" />
+  <link rel="stylesheet" href="./lib/nouislider.min.css?v=2" />
   <link rel="stylesheet" href="./style/style.min.css?v=2" />
 </head>
 
@@ -42,19 +42,19 @@
             <a class="block px-2 lg:px-4 rounded bg-gray-50 bg-opacity-20 focus:bg-opacity-30 text-white transition link-" href="/">Pricing</a>
           </li>
           <li>
-            <a target="_blank" class="block px-2 lg:px-4 rounded bg-gray-50 bg-opacity-0 hover:bg-opacity-20 focus:bg-opacity-30 text-white transition link-" href="/api">API</a>
+            <a target="_blank" class="block cursor-alias px-2 lg:px-4 rounded bg-gray-50 bg-opacity-0 hover:bg-opacity-20 focus:bg-opacity-30 text-white transition link-" href="/api">API</a>
           </li>
           <li>
-            <a target="_blank" class="block px-2 lg:px-4 rounded bg-gray-50 bg-opacity-0 hover:bg-opacity-20 focus:bg-opacity-30 text-white transition link-" href="/api/pricing?ram=96gb">Single Filter</a>
+            <a target="_blank" class="block cursor-alias px-2 lg:px-4 rounded bg-gray-50 bg-opacity-0 hover:bg-opacity-20 focus:bg-opacity-30 text-white transition link-" href="/api/pricing?ram=96gb">Single Filter</a>
           </li>
           <li>
-            <a target="_blank" class="block px-2 lg:px-4 rounded bg-gray-50 bg-opacity-0 hover:bg-opacity-20 focus:bg-opacity-30 text-white transition link-" href="/api/pricing?ram[]=96gb">Multiple Filter</a>
+            <a target="_blank" class="block cursor-alias px-2 lg:px-4 rounded bg-gray-50 bg-opacity-0 hover:bg-opacity-20 focus:bg-opacity-30 text-white transition link-" href="/api/pricing?ram[]=96gb">Multiple Filter</a>
           </li>
           <li>
-            <a target="_blank" class="block px-2 lg:px-4 rounded bg-gray-50 bg-opacity-0 hover:bg-opacity-20 focus:bg-opacity-30 text-white transition link-" href="/api/pricing?storage-min=300&storage-max=500">Range Filter</a>
+            <a target="_blank" class="block cursor-alias px-2 lg:px-4 rounded bg-gray-50 bg-opacity-0 hover:bg-opacity-20 focus:bg-opacity-30 text-white transition link-" href="/api/pricing?storage-min=300&storage-max=500">Range Filter</a>
           </li>
           <li>
-            <a target="_blank" class="block px-2 lg:px-4 rounded bg-gray-50 bg-opacity-0 hover:bg-opacity-20 focus:bg-opacity-30 text-white transition link-" href="/api/pricing?storage-min=0&storage-max=8TB&ram-min=8GB&ram-max=64GB&storagetype%5B%5D=SSD&storagetype%5B%5D=SATA&location=SFO-12&brand=Dell">Full Example</a>
+            <a target="_blank" class="block cursor-alias px-2 lg:px-4 rounded bg-gray-50 bg-opacity-0 hover:bg-opacity-20 focus:bg-opacity-30 text-white transition link-" href="/api/pricing?storage-min=0&storage-max=8TB&ram-min=8GB&ram-max=64GB&storagetype%5B%5D=SSD&storagetype%5B%5D=SATA&location=SFO-12&brand=Dell">Full Example</a>
           </li>
         </ul>
       </nav>
@@ -85,7 +85,7 @@
             </label>
           </div>
 
-          <div class="block my-4">
+          <div class="block my-1 lg:my-2">
             <label class="block">
               <span class="font-light">Ram</span>
               <div class="my-2 pt-10 pb-10 px-2">
@@ -96,9 +96,9 @@
             </label>
           </div>
 
-          <div class="block my-4">
+          <div class="block my-1 lg:my-2">
             <h3 class="font-light">Storage Type</h3>
-            <div class="mt-2">
+            <div class="mt-1">
               <label class="flex items-center cursor-pointer">
                 <input type="checkbox" class="form-checkbox" name="storagetype[]" value="SSD" checked>
                 <span class="ml-2">SSD</span>
@@ -114,9 +114,9 @@
             </div>
           </div>
 
-          <div class="block my-4">
+          <div class="block my-1 lg:my-2">
             <h3 class="font-light">Datacenter Locations</h3>
-            <div class="mt-2">
+            <div class="mt-1">
               <label class="flex items-center cursor-pointer">
                 <input type="radio" class="form-radio" name="location" value="AMS-01" checked>
                 <span class="ml-2">Amsterdan</span>
@@ -148,10 +148,10 @@
             </div>
           </div>
 
-          <div class="block my-4">
+          <div class="block my-1 lg:my-2">
             <label class="block">
               <span class="font-light">Brand</span>
-              <select class="form-select block w-full mt-2 cursor-pointer" id="brand" name="brand">
+              <select class="form-select block w-full cursor-pointer mt-1" id="brand" name="brand">
                 <option value="">All</option>
                 <option value="HP">HP</option>
                 <option value="Dell">Dell</option>
@@ -159,6 +159,21 @@
               </select>
             </label>
           </div>
+
+          <div class="block my-1 lg:my-2">
+            <label class="block">
+              <span class="font-light">Sort by</span>
+              <select class="form-select block w-full cursor-pointer mt-1" id="orderby" name="orderby">
+                <option value="asc">Price - Low to High</option>
+                <option value="desc">Price - Hight to Low</option>
+                <option value="ram-asc">Ram - Low to High</option>
+                <option value="ram-desc">Ram - Hight to Low</option>
+                <option value="storage-asc">Storage - Low to High</option>
+                <option value="storage-desc">Storage - Hight to Low</option>
+              </select>
+            </label>
+          </div>
+
         </form>
       </aside>
 

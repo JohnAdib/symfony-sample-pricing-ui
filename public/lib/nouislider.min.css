@@ -3,3 +3,6 @@
 .noUi-connect {
     background: #2763e6;
 }
+.noUi-touch-area, .noUi-handle:before, .noUi-handle:after{
+    cursor: ew-resize;
+}
