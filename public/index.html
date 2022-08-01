@@ -1,31 +1,75 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" prefix="og: http://ogp.me/ns#">
+
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Plans & Pricing Table | MrAdib</title>
-  <meta name="description" content="Compare plans sizes and pricing to find the perfect match for your application's needs. Choose from a wide range of instance types."/>
+  <meta name="description"
+    content="Compare plans sizes and pricing to find the perfect match for your application's needs. Choose from a wide range of instance types." />
 
-  <meta property="og:title" content="Plans & Pricing Table | MrAdib"/>
-  <meta property="og:description" content="Compare plans sizes and pricing to find the perfect match for your application's needs. Choose from a wide range of instance types."/>
-  <meta property="og:type" content="document"/>
-  <meta property="og:url" content="https://symfony1.MrAdib.com/"/>
-  <meta property="og:image" content="./img/cover-v1.jpg"/>
+  <meta property="og:title" content="Plans & Pricing Table | MrAdib" />
+  <meta property="og:description"
+    content="Compare plans sizes and pricing to find the perfect match for your application's needs. Choose from a wide range of instance types." />
+  <meta property="og:type" content="document" />
+  <meta property="og:url" content="https://symfony1.MrAdib.com/" />
+  <meta property="og:image" content="./img/cover-v1.jpg" />
 
-  <meta name="twitter:title" content="Plans & Pricing Table | MrAdib"/>
-  <meta name="twitter:description" content="Compare plans sizes and pricing to find the perfect match for your application's needs. Choose from a wide range of instance types."/>
-  <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:url" content="https://symfony1.MrAdib.com/"/>
-  <meta name="twitter:image" content="./img/cover-v1.jpg"/>
+  <meta name="twitter:title" content="Plans & Pricing Table | MrAdib" />
+  <meta name="twitter:description"
+    content="Compare plans sizes and pricing to find the perfect match for your application's needs. Choose from a wide range of instance types." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://symfony1.MrAdib.com/" />
+  <meta name="twitter:image" content="./img/cover-v1.jpg" />
 
-  <meta name="author" content="Javad Adib"/>
-  <link href="https://MrAdib.com" rel="author"/>
-  <link href="./img/favicon.png" type="image/png" rel="icon"/>
-  <link rel="stylesheet" href="./fonts/AirbnbCereal/style.css?v=1"/>
-  <link rel="stylesheet" href="./lib/nouislider.min.css?v=1"/>
-  <link rel="stylesheet" href="./style/style.min.css?v=1"/>
+  <meta name="author" content="Javad Adib" />
+  <link href="https://MrAdib.com" rel="author" />
+  <link href="./img/favicon.png" type="image/png" rel="icon" />
+  <link rel="stylesheet" href="./fonts/AirbnbCereal/style.css?v=1" />
+  <link rel="stylesheet" href="./lib/nouislider.min.css?v=1" />
+  <link rel="stylesheet" href="./style/style.min.css?v=1" />
 </head>
+
 <body>
+  <header class="mx-auto max-w-screen-xl w-full px-2 sm:px-4 lg:px-5 pt-4 select-none">
+    <div class="flex align-center rounded-lg relative py-4 px-6 overflow-hidden bg-[#004bb0]">
+      <a target="_blank" href="https://mradib.com" class="siteLogo rounded-lg overflow-hidden">
+        <h1 class="text-white text-xl leading-10 font-light hover:text-blue-200">MrAdib</h1>
+      </a>
+      <nav class="px-2 md:px-4 lg:px-6 text-sm justify-start">
+        <ul class="flex gap-2 justify-center leading-10">
+          <li>
+            <a class="block px-2 lg:px-4 rounded bg-gray-50 bg-opacity-20 focus:bg-opacity-30 text-white transition link-" href="/">Pricing</a>
+          </li>
+          <li>
+            <a target="_blank" class="block px-2 lg:px-4 rounded bg-gray-50 bg-opacity-0 hover:bg-opacity-20 focus:bg-opacity-30 text-white transition link-" href="/api">API</a>
+          </li>
+          <li>
+            <a target="_blank" class="block px-2 lg:px-4 rounded bg-gray-50 bg-opacity-0 hover:bg-opacity-20 focus:bg-opacity-30 text-white transition link-" href="/api/pricing?ram=96gb">Single Filter</a>
+          </li>
+          <li>
+            <a target="_blank" class="block px-2 lg:px-4 rounded bg-gray-50 bg-opacity-0 hover:bg-opacity-20 focus:bg-opacity-30 text-white transition link-" href="/api/pricing?ram[]=96gb">Multiple Filter</a>
+          </li>
+          <li>
+            <a target="_blank" class="block px-2 lg:px-4 rounded bg-gray-50 bg-opacity-0 hover:bg-opacity-20 focus:bg-opacity-30 text-white transition link-" href="/api/pricing?storage-min=300&storage-max=500">Range Filter</a>
+          </li>
+          <li>
+            <a target="_blank" class="block px-2 lg:px-4 rounded bg-gray-50 bg-opacity-0 hover:bg-opacity-20 focus:bg-opacity-30 text-white transition link-" href="/api/pricing?storage-min=0&storage-max=8TB&ram-min=8GB&ram-max=64GB&storagetype%5B%5D=SSD&storagetype%5B%5D=SATA&location=SFO-12&brand=Dell">Complex Filter</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="flex-grow"></div>
+      <nav class="social flex">
+        <ul class="flex justify-center leading-10">
+          <li>
+            <a target="_blank" class="block px-2 lg:px-4 rounded bg-gray-800 hover:bg-opacity-70 focus:bg-opacity-50 text-white transition link-" href="/api/github">Github</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+
   <div class="mx-auto max-w-screen-xl w-full px-2 sm:px-4 lg:px-5 py-4 select-none">
     <div class="flex flex-row flex-wrap md:flex-nowrap gap-2 lg:gap-4">
       <aside class="basis-full md:basis-2/5 lg:basis-1/4 select-none">
@@ -119,7 +163,8 @@
       </aside>
 
       <main class="basis-full md:basis-3/5 lg:basis-3/4">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4 leading-relaxed text-sm" id="servers-card-list">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4 leading-relaxed text-sm"
+          id="servers-card-list">
 
         </div>
       </main>
@@ -129,4 +174,5 @@
   <script src="./script/script.js?v=1"></script>
   <script src="./lib/nouislider.min.js?v=2"></script>
 </body>
+
 </html>
