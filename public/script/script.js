@@ -79,12 +79,14 @@ function noResultState()
 {
   // clear current cards
   document.getElementById('servers-card-list').innerHTML = "";
+  // remove loading mode
+  loadingState(false);
 
   let str;
 
   str = '<div class="max-w-md mx-auto text-center">';
   {
-    str += '<img src="./img/empty-filter.jpg" alt="Empty state">';
+    str += '<img src="./img/empty-filter.jpg" alt="Empty state" class="w-full aspect-square">';
     str += '<h2 class="font-light text-xl leading-10 text-gray-600 mb-2">No results found</h2>';
     str += '<p class="text-gray-500 leading-relaxed">Try adjusting your search or filter to find what you are looking for.</p>';
     str += '<p class="text-gray-500 leading-relaxed">Not sure where to start? <a href="/" class="text-blue-800 hover:opacity-80 focus:opacity-60 transition">Reset filters</a></p>';
@@ -105,18 +107,19 @@ function loadingState(newStatus)
   var loadingEl = document.getElementById('loadingState');
   if(newStatus !== true)
   {
-    loadingEl.remove();
+    if(loadingEl)
+    {
+      loadingEl.remove();
+    }
+
     return;
   }
-
-  console.log(loadingEl);
 
   // if loading exist before, remove it
   if(loadingEl)
   {
     loadingEl.remove();
   }
-
 
   let str;
 
