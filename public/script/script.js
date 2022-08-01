@@ -82,7 +82,7 @@ function noResultState()
 
   let str;
 
-  str += '<div class="max-w-md mx-auto text-center">';
+  str = '<div class="max-w-md mx-auto text-center">';
   {
     str += '<img src="./img/empty-filter.jpg" alt="Empty state">';
     str += '<h2 class="font-light text-xl leading-10 text-gray-600 mb-2">No results found</h2>';
