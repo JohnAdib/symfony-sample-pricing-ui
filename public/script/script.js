@@ -13,6 +13,19 @@ elFormServerFilters.addEventListener('change', function()
 
 function fillCards(serversDatalist)
 {
+  // if data is not exist show no result mode
+  if(!serversDatalist)
+  {
+    noResultState();
+    return;
+  }
+  // if api reseponse of filter array is empty, show no result mode
+  if(serversDatalist.length === 0)
+  {
+    noResultState();
+    return;
+  }
+
   // clear current cards
   document.getElementById('servers-card-list').innerHTML = "";
 
@@ -56,6 +69,31 @@ function createCardElement(datarow)
 
   // create temp element
   let temp = document.createElement('div');
+  temp.innerHTML = str;
+  // append element to page
+  document.getElementById('servers-card-list').appendChild(temp);
+}
+
+
+function noResultState()
+{
+  // clear current cards
+  document.getElementById('servers-card-list').innerHTML = "";
+
+  let str;
+
+  str += '<div class="max-w-md mx-auto text-center">';
+  {
+    str += '<img src="./img/empty-filter.jpg" alt="Empty state">';
+    str += '<h2 class="font-light text-xl leading-10 text-gray-600 mb-2">No results found</h2>';
+    str += '<p class="text-gray-500 leading-relaxed">Try adjusting your search or filter to find what you are looking for.</p>';
+    str += '<p class="text-gray-500 leading-relaxed">Not sure where to start? <a href="/" class="text-blue-800 hover:opacity-80 focus:opacity-60 transition">Reset filters</a></p>';
+  }
+  str += '</div>';
+
+  // create temp element
+  let temp = document.createElement('div');
+  temp.className = 'col-span-3';
   temp.innerHTML = str;
   // append element to page
   document.getElementById('servers-card-list').appendChild(temp);
