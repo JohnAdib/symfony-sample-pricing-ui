@@ -100,6 +100,43 @@ function noResultState()
 }
 
 
+function loadingState(newStatus)
+{
+  var loadingEl = document.getElementById('loadingState');
+  if(newStatus !== true)
+  {
+    loadingEl.remove();
+    return;
+  }
+
+  console.log(loadingEl);
+
+  // if loading exist before, remove it
+  if(loadingEl)
+  {
+    loadingEl.remove();
+  }
+
+
+  let str;
+
+  str = '<div class="flex mx-auto w-60 mt-16 items-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-emerald-500 hover:bg-emerald-400 transition ease-in-out duration-150 cursor-wait">';
+  {
+    str += '<svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>';
+    str += '<span>Processing...</span>';
+  }
+  str += '</div>';
+
+  // create temp element
+  let temp = document.createElement('div');
+  temp.className = 'absolute inset-0 bg-gray-100/70';
+  temp.id = 'loadingState';
+  temp.innerHTML = str;
+  // append element to page
+  document.getElementById('servers-card-container').appendChild(temp);
+}
+
+
 function serializeToObj (data)
 {
   let obj = {};
@@ -151,7 +188,7 @@ function getDataFromServer()
   clearTimeout( activeAjaxDelayTime );
 
   // disable form elements
-  // controlFormDisabled(true);
+  loadingState(true);
 
   activeAjaxDelayTime = setTimeout(() => {
     activeAjax = new XMLHttpRequest();
@@ -173,7 +210,7 @@ function getDataFromServer()
 
 
       // enable form elements
-      // controlFormDisabled(false);
+      loadingState(false);
     };
     activeAjax.send();
   }, 200);
