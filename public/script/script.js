@@ -80,7 +80,7 @@ function noResultState()
   // clear current cards
   document.getElementById('servers-card-list').innerHTML = "";
   // remove loading mode
-  loadingState(false);
+  loadingDataState(false);
 
   let str;
 
@@ -102,9 +102,9 @@ function noResultState()
 }
 
 
-function loadingState(newStatus)
+function loadingDataState(newStatus)
 {
-  var loadingEl = document.getElementById('loadingState');
+  var loadingEl = document.getElementById('loadingDataState');
   if(newStatus !== true)
   {
     if(loadingEl)
@@ -133,7 +133,7 @@ function loadingState(newStatus)
   // create temp element
   let temp = document.createElement('div');
   temp.className = 'absolute inset-0 bg-gray-100/70';
-  temp.id = 'loadingState';
+  temp.id = 'loadingDataState';
   temp.innerHTML = str;
   // append element to page
   document.getElementById('servers-card-container').appendChild(temp);
@@ -191,7 +191,7 @@ function getDataFromServer()
   clearTimeout( activeAjaxDelayTime );
 
   // disable form elements
-  loadingState(true);
+  loadingDataState(true);
 
   activeAjaxDelayTime = setTimeout(() => {
     activeAjax = new XMLHttpRequest();
@@ -211,12 +211,205 @@ function getDataFromServer()
         console.error('Error on json response from API!');
       }
 
-
       // enable form elements
-      loadingState(false);
+      loadingDataState(false);
     };
     activeAjax.send();
   }, 200);
+}
+
+
+// only one ajax at one time
+var activeFilterAjax;
+function getFiltersFromServer()
+{
+  // if we have active ajax, cancel it
+  if(activeFilterAjax !== undefined)
+  {
+    activeFilterAjax.abort();
+  }
+
+  // disable form elements
+  // loadingFilterState(true);
+
+  activeFilterAjax = new XMLHttpRequest();
+  activeFilterAjax.open("GET", "/api/filters?"+ createApiQueryString(), true);
+  activeFilterAjax.onreadystatechange = function () {
+    if (activeFilterAjax.readyState != 4 || activeFilterAjax.status != 200) {
+      //error - show something
+      return;
+    };
+    // data is here
+
+    // try{
+      //convert json
+      let jsonResult = JSON.parse(activeFilterAjax.responseText);
+      // fill cards based on json data
+      fillFiltersOpt(jsonResult);
+    // }catch(e){
+      // console.error('Error on filters json response from API!');
+    // }
+
+    // enable form elements
+    // loadingFilterState(false);
+  };
+  activeFilterAjax.send();
+}
+
+
+function filterDropdown(myFilters)
+{
+  let el;
+  el = '<label class="block">';
+  {
+    el += '<h2 class="font-light">' + myFilters.title +'</h2>';
+    el += '<select class="form-select block w-full cursor-pointer mt-1" id="' + myFilters.name + '" name="' + myFilters.name + '">';
+    {
+      Object.keys(myFilters.data).forEach(function(key) {
+        let keyVal = myFilters.data[key];
+        // set value if not exist
+        if(keyVal.value === undefined){
+          keyVal.value = keyVal.title;
+        }
+
+        // el += '<option value="' + val + '">' + val + ' (' + myFilters.data[val] + ')</option>';
+        el += '<option value="' + keyVal.value + '">' + keyVal.title + '</option>';
+      });
+    }
+    el += '</select>';
+  }
+  el += '</label>';
+
+  return el;
+}
+
+
+function filterRadio(myFilters)
+{
+  let el;
+  el = '<h2 class="font-light mb-1">' + myFilters.title +'</h2>';
+
+  Object.keys(myFilters.data).forEach(function(key) {
+    let keyVal = myFilters.data[key];
+    // set value if not exist
+    if(keyVal.value === undefined){
+      keyVal.value = keyVal.title;
+    }
+
+    el += '<label class="flex items-center cursor-pointer">';
+    {
+      el += '<input type="radio" class="form-radio" name="' + myFilters.name + '" value="' + keyVal.value + '"';
+      if(keyVal.checked){
+        el += ' checked';
+      }
+      el += '>';
+      el += '<span class="ml-2">' + keyVal.title + '</span>';
+      // el += '<span class="ml-2">' + keyVal.title + ' (' + keyVal.count + ')</span>';
+    }
+    el += '</label>';
+  });
+
+  return el;
+}
+
+
+function filterCheckbox(myFilters)
+{
+  let el;
+  el = '<h2 class="font-light mb-1">' + myFilters.title +'</h2>';
+
+  Object.keys(myFilters.data).forEach(function(key) {
+    let keyVal = myFilters.data[key];
+    // set value if not exist
+    if(keyVal.value === undefined){
+      keyVal.value = keyVal.title;
+    }
+
+    el += '<label class="flex items-center cursor-pointer">';
+    {
+      el += '<input type="checkbox" class="form-checkbox" name="' + myFilters.name + '[]" value="' + keyVal.value + '"';
+      if(keyVal.checked){
+        el += ' checked';
+      }
+      el += '>';
+      el += '<span class="ml-2">' + keyVal.title + '</span>';
+      // el += '<span class="ml-2">' + keyVal.title + ' (' + keyVal.count + ')</span>';
+    }
+    el += '</label>';
+  });
+
+  return el;
+}
+
+
+function filterRange(myFilters)
+{
+  let myRangeSlider = document.getElementById(myFilters.name);
+  // myRangeSlider.noUiSlider.set(['4GB']);
+
+  // destroy current range if exist
+  if(myRangeSlider && myRangeSlider.noUiSlider){
+    myRangeSlider.noUiSlider.destroy();
+  }
+
+  // create new range with filter data
+  createMyRangeSlider( myFilters.name, myFilters.range);
+}
+
+
+function fillFiltersOpt(filtersDatalist)
+{
+  // if data is not exist do nothing
+  if(!filtersDatalist)
+  {
+    return;
+  }
+
+  // if api reseponse of filter array is empty, do nothing
+  if(filtersDatalist.length === 0)
+  {
+    return;
+  }
+
+  // for each filter
+  filtersDatalist.forEach(element => {
+    $elStr = '';
+
+    // if require data is not exist, don't create element
+    if(element.title && element.name && element.data) {
+      switch(element.type) {
+        case 'dropdown':
+          $elStr = filterDropdown(element);
+          break;
+
+        case 'radio':
+          $elStr = filterRadio(element);
+          break;
+
+        case 'checkbox':
+          $elStr = filterCheckbox(element);
+          break;
+
+          case 'range':
+            $elStr = filterRange(element);
+            break;
+
+        default:
+          // do nothing
+          break;
+      }
+
+      if($elStr)
+      {
+        // create temp element
+        let temp = document.createElement('div');
+        temp.className = 'block my-1 lg:my-2';
+        temp.innerHTML = $elStr;
+        // append element to page
+        document.getElementById('server-filters').appendChild(temp);
+      }
+    }
+  });
 }
 
 
@@ -243,6 +436,9 @@ function controlFormDisabled(newStatus)
     rangeSliders[1].removeAttribute('disabled');
   }
 }
+
+// fill initial filters
+getFiltersFromServer();
 
 // fill initial data
 getDataFromServer();

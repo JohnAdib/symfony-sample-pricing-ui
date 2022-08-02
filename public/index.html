@@ -78,7 +78,7 @@
             <label class="block">
               <span class="font-light">Storage</span>
               <div class="my-2 pt-10 pb-10 px-2">
-                <div id="storage-range" class="range-slider"></div>
+                <div id="storage" class="range-slider"></div>
               </div>
               <input type="hidden" name="storage-min" value="" id="storage-min" class="block p-1 mt-2 w-full" />
               <input type="hidden" name="storage-max" value="" id="storage-max" class="block p-1 mt-2 w-full" />
@@ -89,90 +89,13 @@
             <label class="block">
               <span class="font-light">Ram</span>
               <div class="my-2 pt-10 pb-10 px-2">
-                <div id="ram-range" class="range-slider"></div>
+                <div id="ram" class="range-slider"></div>
               </div>
               <input type="hidden" name="ram-min" value="" id="ram-min" class="block p-1 mt-2 w-full" />
               <input type="hidden" name="ram-max" value="" id="ram-max" class="block p-1 mt-2 w-full" />
             </label>
           </div>
 
-          <div class="block my-1 lg:my-2">
-            <h3 class="font-light">Storage Type</h3>
-            <div class="mt-1">
-              <label class="flex items-center cursor-pointer">
-                <input type="checkbox" class="form-checkbox" name="storagetype[]" value="SSD" checked>
-                <span class="ml-2">SSD</span>
-              </label>
-              <label class="flex items-center cursor-pointer">
-                <input type="checkbox" class="form-checkbox" name="storagetype[]" value="SAS">
-                <span class="ml-2">SAS</span>
-              </label>
-              <label class="flex items-center cursor-pointer">
-                <input type="checkbox" class="form-checkbox" name="storagetype[]" value="SATA">
-                <span class="ml-2">SATA2</span>
-              </label>
-            </div>
-          </div>
-
-          <div class="block my-1 lg:my-2">
-            <h3 class="font-light">Datacenter Locations</h3>
-            <div class="mt-1">
-              <label class="flex items-center cursor-pointer">
-                <input type="radio" class="form-radio" name="location" value="AMS-01" checked>
-                <span class="ml-2">Amsterdan</span>
-              </label>
-              <label class="flex items-center cursor-pointer">
-                <input type="radio" class="form-radio" name="location" value="DAL-10">
-                <span class="ml-2">Dallas</span>
-              </label>
-              <label class="flex items-center cursor-pointer">
-                <input type="radio" class="form-radio" name="location" value="FRA-10">
-                <span class="ml-2">Frankfurt</span>
-              </label>
-              <label class="flex items-center cursor-pointer">
-                <input type="radio" class="form-radio" name="location" value="HKG-10">
-                <span class="ml-2">Hong Kong</span>
-              </label>
-              <label class="flex items-center cursor-pointer">
-                <input type="radio" class="form-radio" name="location" value="SFO-12">
-                <span class="ml-2">San Francisco</span>
-              </label>
-              <label class="flex items-center cursor-pointer">
-                <input type="radio" class="form-radio" name="location" value="SIN-11">
-                <span class="ml-2">Singapore</span>
-              </label>
-              <label class="flex items-center cursor-pointer">
-                <input type="radio" class="form-radio" name="location" value="WDC-01">
-                <span class="ml-2">Washington D.C.</span>
-              </label>
-            </div>
-          </div>
-
-          <div class="block my-1 lg:my-2">
-            <label class="block">
-              <span class="font-light">Brand</span>
-              <select class="form-select block w-full cursor-pointer mt-1" id="brand" name="brand">
-                <option value="">All</option>
-                <option value="HP">HP</option>
-                <option value="Dell">Dell</option>
-                <option value="IBM">IBM</option>
-              </select>
-            </label>
-          </div>
-
-          <div class="block my-1 lg:my-2">
-            <label class="block">
-              <span class="font-light">Sort by</span>
-              <select class="form-select block w-full cursor-pointer mt-1" id="orderby" name="orderby">
-                <option value="asc">Price - Low to High</option>
-                <option value="desc">Price - Hight to Low</option>
-                <option value="ram-asc">Ram - Low to High</option>
-                <option value="ram-desc">Ram - Hight to Low</option>
-                <option value="storage-asc">Storage - Low to High</option>
-                <option value="storage-desc">Storage - Hight to Low</option>
-              </select>
-            </label>
-          </div>
 
         </form>
       </aside>
