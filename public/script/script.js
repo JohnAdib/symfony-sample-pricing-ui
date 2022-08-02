@@ -61,7 +61,7 @@ function createCardElement(datarow)
     str += '<div class="server-price font-light text-xl text-blue-400">';
     {
       str += '<span>' + datarow.currency + '</span> ';
-      str += '<span>' + datarow.price + '</span>';
+      str += '<span>' + datarow.price.toString().replace('.00', '') + '</span>';
     }
     str += '</div>';
   }
