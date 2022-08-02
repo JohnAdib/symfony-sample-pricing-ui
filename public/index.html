@@ -32,7 +32,7 @@
 
   <meta name="author" content="Javad Adib" />
   <link href="https://MrAdib.com" rel="author" />
-  <link rel="stylesheet" href="./style/style.min.css?v=4" />
+  <link href="./style/style.min.css?v=4" rel="preload stylesheet" as="style"/>
 </head>
 
 <body>
@@ -91,8 +91,9 @@
     </div>
   </div>
 
-  <script src="./script/script.js?v=4"></script>
-  <script src="./lib/nouislider.min.js?v=4"></script>
+  <script async src="./lib/nouislider.min.js?v=4"></script>
+  <script async src="./script/script.js?v=4"></script>
+
 </body>
 
 </html>
