@@ -208,14 +208,14 @@ function getDataFromServer()
         return;
       };
       // data is here
-      // try{
+      try{
         //convert json
         let jsonResult = JSON.parse(activeAjax.responseText);
         // fill cards based on json data
         fillCards(jsonResult);
-      // }catch(e){
-        // console.error('Error on json response from API!');
-      // }
+      }catch(e){
+        console.error('Error on json response from API!');
+      }
 
       // enable form elements
       loadingDataState(false);
@@ -247,14 +247,14 @@ function getFiltersFromServer()
     };
     // data is here
 
-    // try{
+    try{
       //convert json
       let jsonResult = JSON.parse(activeFilterAjax.responseText);
       // fill cards based on json data
       fillFiltersOpt(jsonResult);
-    // }catch(e){
-      // console.error('Error on filters json response from API!');
-    // }
+    }catch(e){
+      console.error('Error on filters json response from API!');
+    }
 
     // enable form elements
     // loadingFilterState(false);
