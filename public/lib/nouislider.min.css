@@ -6,3 +6,6 @@
 .noUi-touch-area, .noUi-handle:before, .noUi-handle:after{
     cursor: ew-resize;
 }
+.noUi-pips{
+    color:#666
+}

@@ -49,22 +49,22 @@ function createCardElement(datarow)
     {
       str += '<div class="server-ram flex">';
       str += '<span class="grow">Ram ' +  datarow.ram + ' GB</span>';
-      str += '<span class="text-gray-500">' +  datarow.ramtype + '</span>';
+      str += '<span class="text-gray-600">' +  datarow.ramtype + '</span>';
     }
     str += '</div>';
     str += '<div class="server-hdd flex text-gray-800">';
     {
       str += '<span class="grow">Storage ' + datarow.storage + ' </span>';
-      str += '<span class="text-gray-500">' + datarow.storagetxt + '</span>';
+      str += '<span class="text-gray-600">' + datarow.storagetxt + '</span>';
     }
     str += '</div>';
     str += '<div class="server-location flex text-gray-800">';
     {
       str += '<span class="grow">' + datarow.city + '</span>';
-      str += '<span class="text-gray-500">' + datarow.location + '</span>';
+      str += '<span class="text-gray-600">' + datarow.location + '</span>';
     }
     str += '</div>';
-    str += '<div class="server-price font-light text-xl text-blue-400">';
+    str += '<div class="server-price font-light text-xl text-blue-600">';
     {
       str += '<span>' + datarow.currency + '</span> ';
       str += '<span>' + datarow.price.toString().replace('.00', '') + '</span>';
@@ -94,8 +94,8 @@ function noResultState()
   {
     str += '<img src="./img/empty-filter.jpg" alt="Empty state" class="w-full aspect-square">';
     str += '<h2 class="font-light text-xl leading-10 text-gray-600 mb-2">No results found</h2>';
-    str += '<p class="text-gray-500 leading-relaxed">Try adjusting your search or filter to find what you are looking for.</p>';
-    str += '<p class="text-gray-500 leading-relaxed">Not sure where to start? <a href="/" class="text-blue-800 hover:opacity-80 focus:opacity-60 transition">Reset filters</a></p>';
+    str += '<p class="text-gray-600 leading-relaxed">Try adjusting your search or filter to find what you are looking for.</p>';
+    str += '<p class="text-gray-600 leading-relaxed">Not sure where to start? <a href="/" class="text-blue-800 hover:opacity-80 focus:opacity-60 transition">Reset filters</a></p>';
   }
   str += '</div>';
 
@@ -445,7 +445,7 @@ function fillFiltersOpt(filtersDatalist)
 
   // add total row line
     let totalRowEl = document.createElement('div');
-    totalRowEl.className = 'block mt-4 text-sky-600';
+    totalRowEl.className = 'block mt-4 text-sky-700';
     totalRowEl.id = 'total-row';
     // totalRowEl.innerHTML = 'Total row';
     // append element to page
