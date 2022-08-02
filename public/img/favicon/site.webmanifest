@@ -1,0 +1,17 @@
+{
+    "name": "Plans & Pricing Table",
+    "short_name": "Pricing",
+    "description": "Compare plans sizes and pricing to find the perfect match for your application's needs. Choose from a wide range of instance types.",
+    "dir": "ltr",
+    "lang": "en-US",
+    "icons": [
+        {
+            "src": "/img/favicon/android-chrome-96x96.png",
+            "sizes": "96x96",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#d2e1f6",
+    "background_color": "#d2e1f6",
+    "display": "standalone"
+}
