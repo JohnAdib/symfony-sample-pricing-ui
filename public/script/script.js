@@ -402,7 +402,7 @@ function fillFiltersOpt(filtersDatalist)
     $elStr = '';
 
     // if require data is not exist, don't create element
-    if(element.title && element.name && element.data) {
+    if(element.title && element.name && element.data && element.data.length) {
       switch(element.type) {
         case 'dropdown':
           $elStr = filterDropdown(element);
