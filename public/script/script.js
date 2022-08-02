@@ -344,6 +344,26 @@ function filterCheckbox(myFilters)
 
 function filterRange(myFilters)
 {
+  let el;
+  el = '<label class="block">'
+  {
+    el = '<h2 class="font-light mb-1">' + myFilters.title +'</h2>';
+    el += '<div class="my-2 pt-10 pb-10 px-2">';
+    {
+      el += '<div id="' + myFilters.name + '" class="range-slider"></div>';
+    }
+    el += '</div>';
+
+    el += '<input type="hidden" name="' + myFilters.name + '-min" value="" id="' + myFilters.name + '-min" class="block p-1 mt-2 w-full" />';
+    el += '<input type="hidden" name="' + myFilters.name + '-max" value="" id="' + myFilters.name + '-max" class="block p-1 mt-2 w-full" />';
+  }
+  el += '</label>';
+  return el;
+}
+
+
+function filterRangeApplyVal(myFilters)
+{
   let myRangeSlider = document.getElementById(myFilters.name);
   // myRangeSlider.noUiSlider.set(['4GB']);
 
@@ -407,6 +427,12 @@ function fillFiltersOpt(filtersDatalist)
         temp.innerHTML = $elStr;
         // append element to page
         document.getElementById('server-filters').appendChild(temp);
+      }
+
+      if(element.type === 'range')
+      {
+        // apply range options
+        filterRangeApplyVal(element);
       }
     }
   });
