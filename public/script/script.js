@@ -43,7 +43,7 @@ function fillCards(serversDatalist)
 function createCardElement(datarow)
 {
   let str;
-  str = '<div class="bg-gray-100 rounded-lg p-2 lg:p-4 lg:pb-2 border-2 border-transparent hover:border-sky-300 transition">';
+  str = '<a href="#server-' + datarow.id +'" class="block bg-gray-100 rounded-lg p-2 lg:p-4 lg:pb-2 border-2 border-transparent hover:border-sky-300 focus:border-sky-400 active:border-sky-600 transition">';
   {
     str += '<div class="server-model font-light truncate">' + datarow.model + '</div>';
     {
@@ -64,7 +64,7 @@ function createCardElement(datarow)
       str += '<span class="text-gray-600">' + datarow.location + '</span>';
     }
     str += '</div>';
-    str += '<div class="server-price font-light text-xl text-blue-600">';
+    str += '<div class="server-price font-light text-xl leading-7 text-blue-600">';
     {
       str += '<span>' + datarow.currency + '</span> ';
       str += '<span>' + datarow.price.toString().replace('.00', '') + '</span>';
@@ -237,9 +237,10 @@ function getFiltersFromServer()
 
   // disable form elements
   // loadingFilterState(true);
+  var currentUrlParams = window.location.search.substr(1);
 
   activeFilterAjax = new XMLHttpRequest();
-  activeFilterAjax.open("GET", "/api/filters?"+ createApiQueryString(), true);
+  activeFilterAjax.open("GET", "/api/filters?"+ currentUrlParams, true);
   activeFilterAjax.onreadystatechange = function () {
     if (activeFilterAjax.readyState != 4 || activeFilterAjax.status != 200) {
       //error - show something
@@ -263,7 +264,7 @@ function getFiltersFromServer()
 }
 
 
-function filterDropdown(myFilters)
+function createFilterDropdown(myFilters)
 {
   let el;
   el = '<label class="block">';
@@ -290,7 +291,7 @@ function filterDropdown(myFilters)
 }
 
 
-function filterRadio(myFilters)
+function createFilterRadio(myFilters)
 {
   let el;
   el = '<h2 class="font-light mb-1">' + myFilters.title +'</h2>';
@@ -302,7 +303,7 @@ function filterRadio(myFilters)
       keyVal.value = keyVal.title;
     }
 
-    el += '<label class="flex items-center cursor-pointer">';
+    el += '<label class="flex items-center cursor-pointer" title="' + keyVal.count + '">';
     {
       el += '<input type="radio" class="form-radio" name="' + myFilters.name + '" value="' + keyVal.value + '"';
       if(keyVal.checked){
@@ -319,7 +320,7 @@ function filterRadio(myFilters)
 }
 
 
-function filterCheckbox(myFilters)
+function createFilterCheckbox(myFilters)
 {
   let el;
   el = '<h2 class="font-light mb-1">' + myFilters.title +'</h2>';
@@ -331,14 +332,14 @@ function filterCheckbox(myFilters)
       keyVal.value = keyVal.title;
     }
 
-    el += '<label class="flex items-center cursor-pointer">';
+    el += '<label class="flex items-center cursor-pointer" title="' + keyVal.count + '">';
     {
       el += '<input type="checkbox" class="form-checkbox" name="' + myFilters.name + '[]" value="' + keyVal.value + '"';
       if(keyVal.checked){
         el += ' checked';
       }
       el += '>';
-      el += '<span class="ml-2">' + keyVal.title + '</span>';
+      el += '<span class="ml-2" >' + keyVal.title + '</span>';
       // el += '<span class="ml-2">' + keyVal.title + ' (' + keyVal.count + ')</span>';
     }
     el += '</label>';
@@ -348,7 +349,7 @@ function filterCheckbox(myFilters)
 }
 
 
-function filterRange(myFilters)
+function createFilterRange(myFilters)
 {
   let el;
   el = '<label class="block">'
@@ -405,19 +406,19 @@ function fillFiltersOpt(filtersDatalist)
     if(element.title && element.name && element.data && element.data.length) {
       switch(element.type) {
         case 'dropdown':
-          $elStr = filterDropdown(element);
+          $elStr = createFilterDropdown(element);
           break;
 
         case 'radio':
-          $elStr = filterRadio(element);
+          $elStr = createFilterRadio(element);
           break;
 
         case 'checkbox':
-          $elStr = filterCheckbox(element);
+          $elStr = createFilterCheckbox(element);
           break;
 
           case 'range':
-            $elStr = filterRange(element);
+            $elStr = createFilterRange(element);
             break;
 
         default:
